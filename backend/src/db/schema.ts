@@ -1,5 +1,5 @@
 import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
-import { One, relations } from "drizzle-orm";
+import { relations } from "drizzle-orm";
 
 export const users = pgTable("users", {
   id: text("id").primaryKey(),
@@ -61,7 +61,7 @@ export type NewUser = typeof users.$inferInsert;
 
 
 export type Product = typeof products.$inferSelect;
-export type NewProduc = typeof products.$inferInsert;
+export type NewProduct = typeof products.$inferInsert;
 
 
 export type Comment = typeof comments.$inferSelect;

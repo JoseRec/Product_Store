@@ -11,7 +11,7 @@ export async function syncUser(req: Request, res: Response) {
 
     if (!email || !name || !imageUrl) {
       return res
-        .json(400)
+        .status(400)
         .json({ error: "Email,name and imageUrl are required" });
     }
 
@@ -25,6 +25,6 @@ export async function syncUser(req: Request, res: Response) {
     res.status(200).json(user);
   } catch (error) {
     console.error("Error syncing user: ", error);
-    res.json(400).json({ error: "Failed to sync user" });
+    res.status(400).json({ error: "Failed to sync user" });
   }
 }

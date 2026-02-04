@@ -9,7 +9,7 @@ export const getAllProducts = async (req: Request, res: Response) => {
     res.status(200).json(products);
   } catch (error) {
     console.error("Error getting products: ", error);
-    res.json(400).json({ error: "Failed to get products" });
+    res.status(400).json({ error: "Failed to get products" });
   }
 };
 
@@ -98,7 +98,7 @@ export const updateProduct = async (req: Request, res: Response) => {
       userId,
     });
 
-    res.status(201).json(product);
+    res.status(200).json(product);
   } catch (error) {
     console.error("Error updating product: ", error);
     res.json(400).json({ error: "Failed to update product" });
@@ -119,12 +119,12 @@ export const deleteProduct = async (req: Request, res: Response) => {
     }
 
     if (existingProduct?.userId !== userId) {
-      res.status(403).json({ error: "You can only update your own products" });
+      res.status(403).json({ error: "You can only delete your own products" });
       return;
     }
 
     await queries.deleteProduct(id as string);
-    res.status(200).json({ message: "Product delete successfully" });
+    res.status(200).json({ message: "Product deleted successfully" });
   } catch (error) {
     console.error("Error deleting product: ", error);
     res.json(400).json({ error: "Failed to delete product" });

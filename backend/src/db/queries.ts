@@ -57,7 +57,6 @@ export const upsertUser = async (data: NewUser) => {
   return user;
 };
 
-
 // Product Queries
 export const createProduct = async (data: NewProduct) => {
   const [product] = await db.insert(products).values(data).returning();

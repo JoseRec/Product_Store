@@ -20,21 +20,43 @@ export const getUserById = async (id: string) => {
 };
 
 export const updateUser = async (id: string, data: Partial<NewUser>) => {
+  const {
+    id: _id,
+    createdAt: _createdAt,
+    updateAt: _updatedAt,
+    ...safeData
+  } = data;
+
   const [user] = await db
     .update(users)
-    .set(data)
+    .set(safeData)
     .where(eq(users.id, id))
     .returning();
+
   return user;
 };
 
 // upsert ->create or update
 export const upsertUser = async (data: NewUser) => {
-  const existignUser = await getUserById(data.id);
-  if (existignUser) return updateUser(data.id, data);
+  const {
+    id: _id,
+    createdAt: _createdAt,
+    updateAt: _updatedAt,
+    ...safeData
+  } = data;
 
-  return createUser(data);
+  const [user] = await db
+    .insert(users)
+    .values(data)
+    .onConflictDoUpdate({
+      target: users.id,
+      set: safeData,
+    })
+    .returning();
+
+  return user;
 };
+
 
 // Product Queries
 export const createProduct = async (data: NewProduct) => {

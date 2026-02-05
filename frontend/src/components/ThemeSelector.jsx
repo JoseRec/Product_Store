@@ -36,6 +36,15 @@ const THEMES = [
   "sunset",
 ];
 
+/**
+ * Render a dropdown theme selector that applies the chosen theme to the document and persists it to localStorage.
+ *
+ * The component initializes the current theme from localStorage (defaults to "forest"), updates the documentRoot
+ * `data-theme` attribute when the selection changes, and stores the selection in localStorage. It displays a trigger
+ * button and a scrollable list of theme options with color swatches; selecting an option sets it as the active theme.
+ *
+ * @returns {JSX.Element} A dropdown UI containing a theme trigger button and a list of selectable themes.
+ */
 function ThemeSelector() {
   const [theme, setTheme] = useState(() => {
     if (typeof window !== "undefined") {

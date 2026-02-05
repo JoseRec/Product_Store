@@ -7,6 +7,11 @@ import ProfilePage from "./pages/ProfilePage";
 import CreatePage from "./pages/CreatePage";
 import EditProductPage from "./pages/EditProductPage";
 
+/**
+ * Root application component that renders the navbar and route-based main content.
+ *
+ * @returns {JSX.Element} A JSX element containing the app layout: a navbar and a main area with routes for Home, Product, Profile, Create, and Edit pages.
+ */
 function App() {
   return (
     <div className="min-h-screen bg-base-100">

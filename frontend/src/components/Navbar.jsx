@@ -8,6 +8,13 @@ import {
 import { ShoppingBagIcon, PlusIcon, UserIcon } from "lucide-react";
 import ThemeSelector from "./ThemeSelector";
 
+/**
+ * Top navigation bar with brand, theme selector, and authentication-dependent controls.
+ *
+ * Renders a logo linking to the homepage, a ThemeSelector, and either signed-in actions
+ * (New Product, Profile, UserButton) or authentication buttons (Sign In, Get Started) based on the current user session.
+ * @returns {JSX.Element} The navbar React element.
+ */
 function Navbar() {
   const { isSignedIn } = useAuth();
 

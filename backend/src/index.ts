@@ -9,7 +9,7 @@ import commentRoutes from "./routes/commentRoutes";
 const app = express();
 
 //Middleware
-app.use(cors({ origin: ENV.FRONTEND_URL }));
+app.use(cors({ origin: ENV.FRONTEND_URL, credentials: true}));
 app.use(clerkMiddleware()); // Authentication (req.auth)
 app.use(express.json()); // parses JSON request bodies
 app.use(express.urlencoded({ extended: true })); // parses form data (like HTML form)

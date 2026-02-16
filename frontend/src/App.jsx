@@ -14,6 +14,10 @@ import EditProductPage from "./pages/EditProductPage";
 import useAuthReq from "./hooks/useAuthReq";
 import useUserSync from "./hooks/useUserSync";
 
+/**
+ * Root application component that synchronizes user state and renders the navigation and page routes.
+ * @returns {JSX.Element|null} The root React element containing the Navbar and configured Routes, or `null` while the authentication library is loading.
+ */
 function App() {
   const { isClerkLoaded, isSignedIn } = useAuthReq();
   useUserSync();

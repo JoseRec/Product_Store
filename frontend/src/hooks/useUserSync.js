@@ -3,7 +3,13 @@ import { useMutation } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { syncUser } from "../lib/api";
 
-// Custom hook responsible for synchronizing, the authenticated Clerk user with our backend database.
+/**
+ * Synchronizes the currently authenticated Clerk user with the backend and exposes whether the sync succeeded.
+ *
+ * The hook automatically triggers a backend sync when a user is signed in and a sync is not already pending
+ * and has not yet succeeded.
+ * @returns {{ isSynced: boolean }} An object with `isSynced`: `true` if the most recent sync completed successfully, `false` otherwise.
+ */
 function useUserSync() {
   // Extract authentication state from Clerk, isSignedIn is a boolean that tells us if the user is logged in.
   const { isSignedIn } = useAuth();

@@ -5,6 +5,13 @@ import api from "../lib/axios";
 // This variable ensures that we only register, the interceptor once globally.
 let isInterceptorRegistered = false;
 
+/**
+ * Registers a global Axios request interceptor that attaches a Clerk-issued Bearer token to outgoing requests when the user is signed in, and exposes the current Clerk auth state.
+ *
+ * The interceptor is registered once and removed when the component using this hook unmounts.
+ *
+ * @returns {{isSignedIn: boolean, isClerkLoaded: boolean}} An object containing the user's sign-in status and whether Clerk has finished loading: `isSignedIn` indicates if a user is signed in, `isClerkLoaded` mirrors Clerk's load state.
+ */
 function useAuthReq() {
   const { isSignedIn, getToken, isLoaded } = useAuth();
   // include the token to the request headers

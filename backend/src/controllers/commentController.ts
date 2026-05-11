@@ -33,16 +33,16 @@ export const deleteComment = async (req: Request, res: Response) => {
     const { userId } = getAuth(req);
     if (!userId) return res.status(401).json({ error: "Unauthorized" });
 
-    const { commentId } = req.params;
+    const { id } = req.params;
     // check if comment exists and belongs to user
-    const existingComment = await queries.getCommentById(commentId as string);
+    const existingComment = await queries.getCommentById(id as string);
     if (!existingComment) return res.status(404).json({ error: "Comment not found" });
 
     if (existingComment.userId !== userId) {
       return res.status(403).json({ error: "You can only delete your own comments" });
     }
 
-    await queries.deleteComment(commentId as string);
+    await queries.deleteComment(id as string);
     res.status(200).json({ message: "Comment deleted successfully" });
   } catch (error) {
     console.error("Error deleting comment:", error);

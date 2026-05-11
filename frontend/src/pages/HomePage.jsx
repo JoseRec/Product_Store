@@ -5,6 +5,13 @@ import ProductCard from "../components/ProductCard";
 import { Link } from "react-router";
 import { SignInButton } from "@clerk/clerk-react";
 
+/**
+ * Render the application's home page, including a hero call-to-action and a list of products.
+ *
+ * Displays a loading spinner while products are loading and an alert if loading fails.
+ *
+ * @returns {JSX.Element} The Home page UI: hero section with sign-in CTA, and either an empty-state card or a grid of product cards.
+ */
 function HomePage() {
   const { data: products, isLoading, error } = useProducts();
 

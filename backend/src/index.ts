@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
       "Welcome to the Store API — built with PostgreSQL, Drizzle ORM, and Clerk Authentication.",
     endpoints: {
       users: "/api/users",
-      prooducts: "/api/products",
+      products: "/api/products",
       comments: "/api/comments",
     },
   });

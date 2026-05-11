@@ -3,6 +3,7 @@ import { useProducts } from "../hooks/useProducts";
 import { PackageIcon, SparklesIcon } from "lucide-react";
 import ProductCard from "../components/ProductCard";
 import { Link } from "react-router";
+import { SignInButton } from "@clerk/clerk-react";
 
 function HomePage() {
   const { data: products, isLoading, error } = useProducts();

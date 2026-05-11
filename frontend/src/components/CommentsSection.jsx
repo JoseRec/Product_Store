@@ -4,6 +4,20 @@ import { useCreateComment, useDeleteComment } from "../hooks/useComments";
 import { SendIcon, Trash2Icon, MessageSquareIcon, LogInIcon } from "lucide-react";
 
 
+/**
+ * Render a comments UI for a product, including a creation form for signed-in users and per-user deletion controls.
+ *
+ * Displays a header with the total count, an input form when the user is signed in, or a sign-in prompt otherwise.
+ * Shows an empty-state message when there are no comments and maps each comment to a chat-style entry with avatar,
+ * author name, creation date, and content. If `currentUserId` matches a comment's `userId`, a delete button is shown
+ * that asks for confirmation before invoking the delete action. The creation input is cleared only after a successful create.
+ *
+ * @param {Object} props
+ * @param {string|number} props.productId - Identifier of the product whose comments are shown and to which new comments are attached.
+ * @param {Array<Object>} [props.comments=[]] - List of comment objects to render. Each comment is expected to include `id`, `userId`, `content`, `createdAt`, and an optional `users` object with `name` and `imageUrl`.
+ * @param {string|number} [props.currentUserId] - Identifier of the current user; used to determine whether the delete control is shown for each comment.
+ * @returns {JSX.Element} The comments section UI.
+ */
 function CommentsSection({ productId, comments = [], currentUserId }) {
 
   const { isSignedIn } = useAuth();

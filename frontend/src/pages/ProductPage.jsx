@@ -11,6 +11,11 @@ import { useAuth } from "@clerk/clerk-react";
 import { useProduct, useDeleteProduct } from "../hooks/useProducts";
 import { useParams, Link, useNavigate } from "react-router";
 
+/**
+ * Renders the product detail page including image, metadata, description, creator info, and comments; shows Edit/Delete controls when the authenticated user is the product owner and navigates home after a successful delete.
+ *
+ * @returns {JSX.Element} The product page UI, a loading spinner while fetching, or a "Product not found" card if the product is missing or an error occurred.
+ */
 function ProductPage() {
   const { id } = useParams();
   const { userId } = useAuth();
